@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="726b635c-b7ee-40b1-953d-48fd9f1874d6" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../Agricultural_news_project/node_modules/iconv-lite/.idea/iconv-lite.iml" afterDir="false" />
@@ -11,11 +14,19 @@
       <change afterPath="$PROJECT_DIR$/../Udemy_courses/Udemy_100_Days_of_Code_The_Complete_Python_Pro_Bootcamp_for_2023_2023-11_Downloadly.ir/Udemy - 100 Days of Code The Complete Python Pro Bootcamp for 2023 2023-11/30 - Day 30 - Intermediate - Errors, Exceptions and JSON Data Improving the Password/006 NATO-Phonetic-Alphabet-for-the-Code-Exercise/.idea/006 NATO-Phonetic-Alphabet-for-the-Code-Exercise.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../User-Authentication/.idea/User-Authentication.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,9 +42,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
   <component name="RunManager">
@@ -83,7 +95,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
+          <line>293</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
