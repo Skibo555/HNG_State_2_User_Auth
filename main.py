@@ -372,13 +372,13 @@ def create_org(current_user):
                 "description": new_org.description
             }
         })
-    except Exception as e:
+    except Exception:
         db.session.rollback()
         return jsonify({
             "status": "Bad request",
-            "message": str(e),
-            "statusCode": 500
-        }), 500
+            "message": "Name most be unique.",
+            "statusCode": 422
+        }), 422
 
 
 @app.route('/api/organisations/<orgId>/users', methods=["POST"])
