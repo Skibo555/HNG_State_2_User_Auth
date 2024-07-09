@@ -80,14 +80,14 @@ def token_required(f):
     return decorated
 
 
-with app.app_context():
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
 
 @app.route("/")
 def index():
     greeting = {
-        "Message": "Welcome home."
+        "Message": "Welcome home I love you."
     }
     return jsonify("response", greeting)
 
