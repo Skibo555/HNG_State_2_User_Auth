@@ -98,41 +98,41 @@ def registration():
     if not data:
         return jsonify({"message": 'No input data provided'}), 422
 
-    errors = []
-    required_fields = ['firstName', 'lastName', 'email', 'password']
-
-    # Check for required fields and their specific validations
-    for field in required_fields:
-        if not data.get(field):
-            errors.append({
-                "field": field,
-                "message": "{} is required. You must provide it for validation.".format(field)
-            })
-        else:
-            # Field-specific validations
-            if field in ['firstName', 'lastName'] and not data[field].isalpha():
-                errors.append({
-                    "field": field,
-                    "message": "{} must contain only alphabets.".format(field)
-                })
-            if field == 'email' and not re.match(r'^[\w.-]+@[\w.-]+\.\w+$', data[field]):
-                errors.append({
-                    "field": "email",
-                    "message": "You must provide a valid email."
-                })
-            if field == 'password' and len(data[field]) < 5:
-                errors.append({
-                    "field": "password",
-                    "message": "Password must be at least 5 characters long."
-                })
-            if len(data[field]) > 255:
-                errors.append({
-                    "field": field,
-                    "message": "{} input must not be too long.".format(field)
-                })
-
-    if errors:
-        return jsonify({"errors": errors}), 422
+    # errors = []
+    # required_fields = ['firstName', 'lastName', 'email', 'password']
+    #
+    # # Check for required fields and their specific validations
+    # for field in required_fields:
+    #     if not data.get(field):
+    #         errors.append({
+    #             "field": field,
+    #             "message": "{} is required. You must provide it for validation.".format(field)
+    #         })
+    #     else:
+    #         # Field-specific validations
+    #         if field in ['firstName', 'lastName'] and not data[field].isalpha():
+    #             errors.append({
+    #                 "field": field,
+    #                 "message": "{} must contain only alphabets.".format(field)
+    #             })
+    #         if field == 'email' and not re.match(r'^[\w.-]+@[\w.-]+\.\w+$', data[field]):
+    #             errors.append({
+    #                 "field": "email",
+    #                 "message": "You must provide a valid email."
+    #             })
+    #         if field == 'password' and len(data[field]) < 5:
+    #             errors.append({
+    #                 "field": "password",
+    #                 "message": "Password must be at least 5 characters long."
+    #             })
+    #         if len(data[field]) > 255:
+    #             errors.append({
+    #                 "field": field,
+    #                 "message": "{} input must not be too long.".format(field)
+    #             })
+    #
+    # if errors:
+    #     return jsonify({"errors": errors}), 422
 
     firstName = data.get('firstName')
     lastName = data.get('lastName')
