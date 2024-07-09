@@ -87,7 +87,7 @@ with app.app_context():
 @app.route("/")
 def index():
     greeting = {
-        "Message": "Welcome home"
+        "Message": "Welcome home."
     }
     return jsonify("response", greeting)
 
