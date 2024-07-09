@@ -34,7 +34,7 @@ def load_user(user_id):
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = request.headers.get('accessToken')
+        token = request.args.get('accessToken')
         if not token:
             return jsonify({"status": "Bad request",
                             "message": "Token is missing",
