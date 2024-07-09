@@ -30,11 +30,8 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
-from flask import request, jsonify
-from functools import wraps
-import jwt
-
+with app.app_context():
+    db.create_all()
 
 def token_required(f):
     @wraps(f)
@@ -79,9 +76,6 @@ def token_required(f):
 
     return decorated
 
-
-    with app.app_context():
-        db.create_all()
 
 
 @app.route("/")
