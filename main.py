@@ -261,9 +261,9 @@ def get_user(userId):
                  "phone": user.phone
                  }
     return jsonify({"status": "success",
-                    "message": "You have successfully logged in.",
+                    "message": "Here is your record.",
                     "data": user_data
-                    })
+                    }), 200
 
 
 @app.route("/api/organisations")
@@ -351,7 +351,7 @@ def create_org(current_user):
     except Exception as e:
         db.session.rollback()
         return jsonify({
-            "status": "Internal Server Error",
+            "status": "Bad request",
             "message": str(e),
             "statusCode": 500
         }), 500
@@ -390,10 +390,10 @@ def join_org(current_user, orgId):
     except Exception as e:
         db.session.rollback()
         return jsonify({
-            "status": "Internal Server Error",
+            "status": "Bad request",
             "message": str(e),
-            "statusCode": 500
-        }), 500
+            "statusCode": 422
+        }), 422
 
 
 if __name__ == "__main__":
