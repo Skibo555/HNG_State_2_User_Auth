@@ -110,10 +110,10 @@ def registration():
             })
         else:
             # Field-specific validations
-            if field in ['firstName', 'lastName'] and not data[field].isalpha():
+            if field not in ['firstName', 'lastName']:
                 errors.append({
                     "field": field,
-                    "message": "{} must contain only alphabets.".format(field)
+                    "message": "{} provide an input.".format(field)
                 })
             if field == 'email' and not re.match(r'^[\w.-]+@[\w.-]+\.\w+$', data[field]):
                 errors.append({
