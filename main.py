@@ -45,11 +45,11 @@ def token_required(f):
         except jwt.ExpiredSignatureError:
             return jsonify({"status": "Bad request",
                             "message": "Token has expired",
-                            "statusCode": 400}), 400
+                            "statusCode": 422}), 422
         except jwt.InvalidTokenError:
             return jsonify({"status": "Bad request",
                             "message": "Invalid token",
-                            "statusCode": 400}), 400
+                            "statusCode": 422}), 422
         kwargs['current_user'] = current_user
         return f(*args, **kwargs)
 
@@ -162,9 +162,9 @@ def registration():
         db.session.rollback()
         return jsonify({
             "status": "Bad request",
-            "message": str(e),
-            "statusCode": 422
-        }), 422
+            "message": "Registration unsuccessful",
+            "statusCode": 400
+        }), 400
     token = jwt.encode({"userId": user_id, 'exp': datetime.utcnow() + timedelta(hours=1)},
                        app.config["SECRET_KEY"], algorithm="HS256")
 
