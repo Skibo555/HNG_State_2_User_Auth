@@ -268,7 +268,7 @@ def login():
 
 @app.route('/api/users/<userId>')
 @token_required
-def get_user(userId):
+def get_user(current_user, userId):
     if not current_user.userId:
         return jsonify({"status": "Bad request",
                         "message": "Access denied",
