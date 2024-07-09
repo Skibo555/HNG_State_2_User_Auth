@@ -31,17 +31,36 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+from flask import request, jsonify
+from functools import wraps
+import jwt
+
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = request.args.get('accessToken')
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return jsonify({"status": "Bad request",
+                            "message": "Authorization header is missing",
+                            "statusCode": 400}), 400
+
+        token = None
+        if 'Bearer ' in auth_header:
+            token = auth_header.split(' ')[1]
+
         if not token:
             return jsonify({"status": "Bad request",
                             "message": "Token is missing",
                             "statusCode": 400}), 400
+
         try:
             data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
             current_user = User.query.filter_by(userId=data["userId"]).first()
+            if not current_user:
+                return jsonify({"status": "Bad request",
+                                "message": "User not found",
+                                "statusCode": 404}), 404
         except jwt.ExpiredSignatureError:
             return jsonify({"status": "Bad request",
                             "message": "Token has expired",
@@ -50,6 +69,11 @@ def token_required(f):
             return jsonify({"status": "Bad request",
                             "message": "Invalid token",
                             "statusCode": 422}), 422
+        except Exception as e:
+            return jsonify({"status": "Internal Server Error",
+                            "message": str(e),
+                            "statusCode": 500}), 500
+
         kwargs['current_user'] = current_user
         return f(*args, **kwargs)
 
