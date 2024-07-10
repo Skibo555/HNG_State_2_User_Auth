@@ -113,7 +113,7 @@ def registration():
             if field not in ['firstName', 'lastName']:
                 errors.append({
                     "field": field,
-                    "message": "{} must contain only alphabets.".format(field)
+                    "message": "{} please, provide an input".format(field)
                 })
             if field == 'email' and not re.match(r'^[\w.-]+@[\w.-]+\.\w+$', data[field]):
                 errors.append({
