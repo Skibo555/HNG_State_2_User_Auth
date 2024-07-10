@@ -30,8 +30,11 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-with app.app_context():
-    db.create_all()
+
+from flask import request, jsonify
+from functools import wraps
+import jwt
+
 
 def token_required(f):
     @wraps(f)
@@ -77,11 +80,14 @@ def token_required(f):
     return decorated
 
 
+with app.app_context():
+    db.create_all()
+
 
 @app.route("/")
 def index():
     greeting = {
-        "Message": "Welcome home I love you."
+        "Message": "Welcome home"
     }
     return jsonify("response", greeting)
 
@@ -107,7 +113,7 @@ def registration():
             if field not in ['firstName', 'lastName']:
                 errors.append({
                     "field": field,
-                    "message": "{} provide an input.".format(field)
+                    "message": "{} must contain only alphabets.".format(field)
                 })
             if field == 'email' and not re.match(r'^[\w.-]+@[\w.-]+\.\w+$', data[field]):
                 errors.append({
